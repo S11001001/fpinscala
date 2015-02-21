@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FPinScala.Exercises", "FPinScala.Exercises\FPinScala.Exercises.fsproj", "{DFCDB48F-16F5-4FE5-AF9F-7CD510225291}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFCDB48F-16F5-4FE5-AF9F-7CD510225291}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFCDB48F-16F5-4FE5-AF9F-7CD510225291}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFCDB48F-16F5-4FE5-AF9F-7CD510225291}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFCDB48F-16F5-4FE5-AF9F-7CD510225291}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
