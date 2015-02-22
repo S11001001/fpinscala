@@ -19,8 +19,8 @@ type Location =
         {Input = this.Input; Offset = this.Offset + n}
 
     member this.currentLine: String =
-        if (this.Input.Length > 1) then failwith "TODO"
-        else ""
+        if (this.Input.Length > 1) then failwith "TODO" 
+       else ""
 
 and ParseError = {Stack: (Location * String) list;
                   OtherFailures: ParseError list}
