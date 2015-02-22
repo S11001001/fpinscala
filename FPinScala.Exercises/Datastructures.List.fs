@@ -29,34 +29,34 @@ module List = // `List` companion module. Contains functions for creating and wo
             | Cons(h, t) -> h + sum(t)
             | _ -> 101 
 
-    let rec append (a1: 'a List, a2: 'a List): 'a List =
+    let rec append (a1: 'a List) (a2: 'a List): 'a List =
         match a1 with
         | Nil -> a2
-        | Cons(h, t) -> Cons (h, append (t, a2))
+        | Cons(h, t) -> Cons (h, append t a2)
 
-    let rec foldRight (elts: 'a List, z: 'b) (f: ('a * 'b) -> 'b): 'b = // Utility functions
+    let rec foldRight (elts: 'a List) (z: 'b) (f: 'a -> 'b -> 'b): 'b = // Utility functions
         match elts with
         | Nil -> z
-        | Cons(x, xs) -> f (x, foldRight (xs, z) f)
+        | Cons(x, xs) -> f x (foldRight xs z f)
   
     let sum2 (ns: int List) = 
-        foldRight (ns, 0) (fun (x,y) -> x + y)
+        foldRight ns 0 (fun x y -> x + y)
   
     let product2 (ns: double List) =
-        foldRight (ns, 1.0) (fun (x,y) -> x * y) // no shorthand syntax for lambdas exists
+        foldRight ns 1.0 (fun x y -> x * y) // no shorthand syntax for lambdas exists
 
     let tail (l: 'a List): 'a List = failwith "TODO"
 
-    let setHead (l: 'a List, h: 'a): 'a List = failwith "TODO"
+    let setHead (l: 'a List) (h: 'a): 'a List = failwith "TODO"
 
-    let drop (l: 'a List, n: int): 'a List = failwith "TODO"
+    let drop (l: 'a List) (n: int): 'a List = failwith "TODO"
 
-    let dropWhile (l: 'a List, f: 'a -> bool): 'a List = failwith "TODO"
+    let dropWhile (l: 'a List) (f: 'a -> bool): 'a List = failwith "TODO"
 
     let init (l: 'a List): 'a List = failwith "TODO"
 
     let length (l: 'a List): int = failwith "TODO"
 
-    let foldLeft (l: 'a List, z: 'b) (f: ('b * 'a) -> 'b): 'b = failwith "TODO"
+    let foldLeft (l: 'a List) (z: 'b) (f: 'b -> 'a -> 'b): 'b = failwith "TODO"
 
     let map (l: 'a List) (f: 'a -> 'b): 'b List = failwith "TODO"
