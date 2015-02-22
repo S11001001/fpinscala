@@ -46,7 +46,7 @@ module Option =
     let variance (xs: double list): double Option =
         failwith "todo"
 
-    let map2 (a: 'a Option, b: 'b Option) (f: ('a * 'b) -> 'c): 'c Option =
+    let map2 (a: 'a Option) (b: 'b Option) (f: 'a -> 'b -> 'c): 'c Option =
         failwith "todo"
 
     let sequence (a: 'a Option list): 'a list Option =

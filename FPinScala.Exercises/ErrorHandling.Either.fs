@@ -31,7 +31,7 @@ module Either =
         | [] -> Left "mean of empty list!"
         | _ -> Right (List.sum xs / double (List.length xs))
 
-    let safeDiv (x: int, y: int): Either<Exception, int> =
+    let safeDiv (x: int) (y: int): Either<Exception, int> =
         try
             Right (x / y)
         with
