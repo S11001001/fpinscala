@@ -9,8 +9,8 @@ type Location =
     {Input: String; Offset: int}
 
     member this.line =
-        (this.Input.Substring(0, this.Offset + 1).ToCharArray
-         |> Seq.ofArray |> Seq.filter (fun c -> c == '\n') |> Seq.length) + 1
+        (this.Input.Substring(0, this.Offset + 1).ToCharArray()
+         |> Seq.ofArray |> Seq.filter (fun c -> c = '\n') |> Seq.length) + 1
 
     member this.col =
         this.Offset + 1 - this.Input.Substring(0, this.Offset + 1).LastIndexOf('\n')
