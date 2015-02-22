@@ -1,4 +1,4 @@
-[![Build status](https://travis-ci.org/fpinscala/fpinscala.svg?branch=master)](https://travis-ci.org/S11001001/fpinscala)
+[![Build status](https://travis-ci.org/S11001001/fpinscala.svg?branch=fsharp)](https://travis-ci.org/S11001001/fpinscala)
 
 This repository contains exercises, hints, and answers for the book
 [Functional Programming in Scala](http://manning.com/bjarnason/). Along
