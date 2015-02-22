@@ -1,4 +1,6 @@
-﻿namespace FPinScala.Exercises.ErrorHandling
+﻿namespace FPinScala.Answers.ErrorHandling
+
+open System
 
 type 'a Option =
     | None
@@ -21,6 +23,21 @@ type 'a Option =
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Option =
+    let failingFn (i: int): int =
+        let y: int = raise (Exception "fail!") // `let y: int = ...` declares `y` as having type `int`, and sets it equal to the right hand side of the `=`.
+        try
+            let x = 42 + 5
+            x + y
+        with
+        | _ -> 43 // A `catch` block is just a pattern matching block like the ones we've seen. `_` is a pattern that matches anything (which must be an `Exception` in this case), and it binds this value to the identifier `e`. The match returns the value 43.
+
+    let failingFn2 (i: int): int =
+        try
+            let x = 42 + 5
+            x + (raise (Exception "fail!"): int) // A thrown Exception can be given any type; here we're annotating it with the type `int`
+        with
+        | _ -> 43
+
     let mean (xs: double list): double Option =
         match xs with
         | [] -> None
