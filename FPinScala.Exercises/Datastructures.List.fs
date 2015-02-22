@@ -7,7 +7,7 @@ type 'a List = // `List` data type, parameterized on a type, `A`
     | Cons of 'a * 'a List // Another data constructor, representing nonempty lists. Note that it contains another `'a list`, which may be `Nil` or another `Cons`.
 
     static member apply ([<ParamArray>] xs: 'a[]): 'a List = // Variadic member syntax
-        failwith "TODO s11"
+        Array.foldBack (fun x xs -> Cons (x, xs)) xs Nil
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module List = // `List` companion module. Contains functions for creating and working with lists.
