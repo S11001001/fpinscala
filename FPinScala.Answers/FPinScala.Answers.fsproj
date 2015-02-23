@@ -34,4 +34,10 @@
     <Compile Include="Datastructures.List.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\FPinScala.Exercises\FPinScala.Exercises.fsproj">
+      <Project>{DFCDB48F-16F5-4FE5-AF9F-7CD510225291}</Project>
+      <Name>FPinScala.Exercises</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
