@@ -94,4 +94,36 @@ module List2 = // `List` companion module. Contains functions for creating and w
         | Nil -> z
         | Cons (h, t) -> foldLeft t (f z h) f
 
+    let sum3 (l: int List) = foldLeft l 0 (fun x y -> x + y)
+    let product3 (l: double List) = foldLeft l 1.0 (fun x y -> x * y)
+
+    let length2 (l: 'a List): int = foldLeft l 0 (fun acc h -> acc + 1)
+
+    let reverse (l: 'a List): 'a List = foldLeft l Nil (fun acc h -> Cons(h,acc))
+
+    // The implementation of `foldRight` in terms of `reverse` and
+    // `foldLeft` is a common trick for avoiding stack overflows when
+    // implementing a strict `foldRight` function as we've done in
+    // this chapter. (We'll revisit this in a later chapter, when we
+    // discuss laziness).
+    //
+    // The other implementations build up a chain of functions which,
+    // when called, results in the operations being performed with the
+    // correct associativity. We are calling `foldRight` with the `'b`
+    // type being instantiated to `'b -> 'b`, then calling the built
+    // up function with the `z` argument. Try expanding the
+    // definitions by substituting equals for equals using a simple
+    // example, like `foldLeft (List.apply(1,2,3)) 0 (fun x y -> x +
+    // y)` if this isn't clear. Note these implementations are more of
+    // theoretical interest - they aren't stack-safe and won't work
+    // for large lists.
+    let foldRightViaFoldLeft (l: 'a List) (z: 'b) (f: 'a -> 'b -> 'b): 'b =
+      foldLeft (reverse l) z (fun b a -> f a b)
+
+    let foldRightViaFoldLeft_1 (l: 'a List) (z: 'b) (f: 'a -> 'b -> 'b): 'b =
+      foldLeft l (fun b -> b) (fun g a b -> g (f a b)) z
+
+    let foldLeftViaFoldRight (l: 'a List) (z: 'b) (f: 'b -> 'a -> 'b): 'b =
+      List.foldRight l (fun b -> b) (fun a g b -> g (f b a)) z
+
     let map (l: 'a List) (f: 'a -> 'b): 'b List = failwith "TODO"
