@@ -55,14 +55,13 @@ Chapter descriptions
 You will need an F# compiler and build tool.  Check the *Use* section
 for your operating system on [the F# website](http://fsharp.org/).
 
-To build the code for the first time, if you are using Microsoft's
-tools:
-
-    $ msbuild
-
-If you are using Mono:
+To build the code for the first time, if you are using Mono:
 
     $ xbuild
+
+If you are using Microsoft's tools:
+
+    $ msbuild
 
 This will compile all the code.  You can run it again when you change
 the code to check your compilation again.  MonoDevelop, Visual Studio,
@@ -78,13 +77,6 @@ to get a Scala REPL with access to your exercises, and
     > run
 
 To get a menu of possible main methods to execute.
-
-To create project files for the eclipse IDE you can install the
-[sbteclipse](https://github.com/typesafehub/sbteclipse)
-[sbt](http://scala-sbt.org) plugin.  This makes a new command
-available in [sbt](http://scala-sbt.org):
-
-    > eclipse
 
 All code in this repository is
 [MIT-licensed](http://opensource.org/licenses/mit-license.php). See
