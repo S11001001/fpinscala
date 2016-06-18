@@ -1,4 +1,4 @@
-[![Build status](https://travis-ci.org/S11001001/fpinscala.svg?branch=fsharp)](https://travis-ci.org/S11001001/fpinscala)
+[![Build status](https://travis-ci.org/S11001001/fpinscala-fsharp.svg?branch=fsharp)](https://travis-ci.org/S11001001/fpinscala-fsharp) [Join the chat at ##fsharp](https://www.irccloud.com/#!/ircs://irc.freenode.net:7000/%23%23fsharp)
 
 This repository contains exercises ported to F#, hints, and answers
 for the book
@@ -6,36 +6,34 @@ for the book
 with the book itself, it's the closest you'll get to having your own
 private functional programming tutor without actually having one.
 
-How to use this repository
---------------------------
+Here's how to use this repository:
 
 Each chapter in the book develops a fully working library of functions
-and data types, built up through a series of exercises and example
-code given in the book text. The shell of this working library and
-exercise stubs live in
+and data types, built up through a series of exercises and example code
+given in the book text. The shell of this working library and exercise
+stubs live in
 `FPinScala.Exercises/<chapter-description>.*.fs`, where
 `<chapter-description>` is a package name that corresponds to the
 chapter title (see below). When you begin working on a chapter, we
 recommend you open the exercise file(s) for that chapter, and when you
-encounter exercises, implement them in the exercises file and make
-sure they work.
+encounter exercises, implement them in the exercises file and make sure
+they work.
 
 If you get stuck on an exercise, let's say exercise 4 in the chapter,
-you can find hints in `answerkey/<chapter-description>/04.hint.txt`
-(if no hints are available for a problem, the file will just have a
-single '-' as its contents) and the answer (written in Scala rather
-than F#) along with an explanation of the answer and any variations in
+you can find hints in `answerkey/<chapter-description>/04.hint.txt` (if
+no hints are available for a problem, the file will just have a single
+'-' as its contents) and the answer along with an explanation of the
+answer and any variations in
 `answerkey/<chapter-description>/04.answer.scala` or
-`04.answer.markdown`.  The finished Scala modules, with all answers
-for each chapter live in
+`04.answer.markdown`. The finished Scala modules, with all answers for
+each chapter live in
 `answers/src/main/scala/fpinscala/<chapter-description>`.  There are
-no F# answers written yet.  Please feel free to submit pull requests
-for alternate answers, improved hints, and so on, so we can make this
-repo the very best resource for people working through the book with
-F#.
+no F# answers written yet.  Please feel
+free to submit pull requests for alternate answers, improved hints, and
+so on, so we can make this repo the very best resource for people
+working through the book with F#.
 
-Chapter descriptions
---------------------
+Chapter descriptions:
 
 * Chapter 2: gettingstarted
 * Chapter 3: Datastructures
@@ -79,12 +77,12 @@ to get a Scala REPL with access to your exercises, and
 To get a menu of possible main methods to execute.
 
 All code in this repository is
-[MIT-licensed](http://opensource.org/licenses/mit-license.php). See
-the LICENSE file for details.
+[MIT-licensed](http://opensource.org/licenses/mit-license.php). See the
+LICENSE file for details.
 
-Have fun, and good luck! Also be sure to check out
-[the community wiki](https://github.com/fpinscala/fpinscala/wiki) for
-the **chapter notes**, links to more reading, and more.
+Have fun, and good luck! Also be sure to check out [the community
+wiki](https://github.com/fpinscala/fpinscala/wiki) for the **chapter
+notes**, links to more reading, and more.
 
 _Paul and Rúnar (original version)_
 
@@ -96,7 +94,7 @@ F# for a Scala book?
 > writing software. We use Scala as the vehicle to get there, but you
 > can apply the lessons herein to programming in any language.
 >
->                          — *Functional Programming in Scala*, p.xvii
+> — *Functional Programming in Scala*, p.xvii
 
 As the book itself says, it is about FP in any language, and Scala is
 merely a medium.  I admit that there is an added challenge to learning

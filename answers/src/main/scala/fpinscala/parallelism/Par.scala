@@ -1,6 +1,8 @@
 package fpinscala.parallelism
 
 import java.util.concurrent._
+import language.implicitConversions
+
 
 object Par {
   type Par[A] = ExecutorService => Future[A]
@@ -49,7 +51,7 @@ object Par {
   def sequenceRight[A](as: List[Par[A]]): Par[List[A]] =
     as match {
       case Nil => unit(Nil)
-      case h :: t => map2(h, fork(sequence(t)))(_ :: _)
+      case h :: t => map2(h, fork(sequenceRight(t)))(_ :: _)
     }
 
   // We define `sequenceBalanced` using `IndexedSeq`, which provides an
