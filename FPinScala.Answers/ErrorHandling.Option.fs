@@ -7,19 +7,37 @@ type 'A Option =
     | Some of 'A
 
     member this.map (f: 'A -> 'B): 'B Option =
-        failwith "todo"
+        match this with
+        | None -> None
+        | Some a -> Some (f a)
 
     member this.getOrElse (deflt: 'A): 'A =
-        failwith "todo"
+        match this with
+        | None -> deflt
+        | Some a -> a
 
     member this.flatMap (f: 'A -> 'B Option): 'B Option =
-        failwith "todo"
+        this.map(f).getOrElse(None)
+
+    // Of course, we can also implement `flatMap` with explicit pattern matching.
+    member this.flatMap_1 (f: 'A -> 'B Option): 'B Option =
+        match this with
+        | None -> None
+        | Some a -> f(a)
 
     member this.orElse (ob: 'A Option): 'A Option =
-        failwith "todo"
+        this.map(Some).getOrElse(ob)
+
+    // Again, we can implement this with explicit pattern matching.
+    member this.orElse_1 (ob: 'A Option): 'A Option =
+        match this with
+        | None -> ob
+        | _ -> this
 
     member this.filter (f: 'A -> bool): 'A Option =
-        failwith "todo"
+        match this with
+        | Some a when f a -> this
+        | _ -> None
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Option =
@@ -44,13 +62,29 @@ module Option =
         | _  -> Some (List.sum xs / double (List.length xs))
 
     let variance (xs: double list): double Option =
-        failwith "todo"
+        (mean xs).flatMap(fun m -> xs |> List.map (fun x -> Math.Pow(x - m, 2.0)) |> mean)
 
     let map2 (a: 'A Option) (b: 'B Option) (f: 'A -> 'B -> 'C): 'C Option =
-        failwith "todo"
+        a.flatMap(fun aa -> b.map(fun bb -> f aa bb))
 
-    let sequence (a: 'A Option list): 'A list Option =
-        failwith "todo"
+    // Here's an explicit recursive version:
+    let rec sequence (a: 'A Option list): 'A list Option =
+        match a with
+        | [] -> Some []
+        | h :: t -> h.flatMap(fun hh -> sequence(t).map(fun z -> hh :: z))
 
-    let traverse (a: 'A list) (f: 'A -> 'B Option): 'B list Option =
-        failwith "todo"
+    // It can also be implemented using `foldBack` and `map2`.
+    let sequence_1 (a: 'A Option list): 'A list Option =
+        List.foldBack (fun x y -> map2 x y (fun v vs -> v :: vs)) a (Some [])
+
+    let rec traverse (a: 'A list) (f: 'A -> 'B Option): 'B list Option =
+        match a with
+        | [] -> Some []
+        | h :: t -> map2 (f h) (traverse t f) (fun v vs -> v :: vs)
+
+    let traverse_1 (a: 'A list) (f: 'A -> 'B Option): 'B list Option =
+        List.foldBack (fun h t -> map2 (f h) t (fun v vs -> v :: vs))
+                      a (Some [])
+
+    let sequenceViaTraverse (a: 'A Option list): 'A list Option =
+        traverse a id
