@@ -4,7 +4,10 @@ open System
 
 type 'a List = // `List` data type, parameterized on a type, `A`
     | Nil      // A `List` data constructor representing the empty list
-    | Cons of 'a * 'a List // Another data constructor, representing nonempty lists. Note that it contains another `'a list`, which may be `Nil` or another `Cons`.
+    // Another data constructor, representing nonempty lists. Note
+    // that it contains another `'a list`, which may be `Nil` or
+    // another `Cons`.
+    | Cons of 'a * 'a List
 
     static member apply ([<ParamArray>] xs: 'a[]): 'a List = // Variadic member syntax
         Array.foldBack (fun x xs -> Cons (x, xs)) xs Nil
