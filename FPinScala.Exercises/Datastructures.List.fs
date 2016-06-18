@@ -2,14 +2,14 @@
 
 open System
 
-type 'a List = // `List` data type, parameterized on a type, `A`
+type 'A List = // `List` data type, parameterized on a type, `A`
     | Nil      // A `List` data constructor representing the empty list
     // Another data constructor, representing nonempty lists. Note
-    // that it contains another `'a list`, which may be `Nil` or
+    // that it contains another `'A List`, which may be `Nil` or
     // another `Cons`.
-    | Cons of 'a * 'a List
+    | Cons of 'A * 'A List
 
-    static member apply ([<ParamArray>] xs: 'a[]): 'a List = // Variadic member syntax
+    static member apply ([<ParamArray>] xs: 'A[]): 'A List = // Variadic member syntax
         Array.foldBack (fun x xs -> Cons (x, xs)) xs Nil
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
@@ -32,12 +32,12 @@ module List = // `List` companion module. Contains functions for creating and wo
             | Cons(h, t) -> h + sum(t)
             | _ -> 101 
 
-    let rec append (a1: 'a List) (a2: 'a List): 'a List =
+    let rec append (a1: 'A List) (a2: 'A List): 'A List =
         match a1 with
         | Nil -> a2
         | Cons(h, t) -> Cons (h, append t a2)
 
-    let rec foldRight (elts: 'a List) (z: 'b) (f: 'a -> 'b -> 'b): 'b = // Utility functions
+    let rec foldRight (elts: 'A List) (z: 'B) (f: 'A -> 'B -> 'B): 'B = // Utility functions
         match elts with
         | Nil -> z
         | Cons(x, xs) -> f x (foldRight xs z f)
@@ -48,18 +48,18 @@ module List = // `List` companion module. Contains functions for creating and wo
     let product2 (ns: double List) =
         foldRight ns 1.0 (fun x y -> x * y) // no shorthand syntax for lambdas exists
 
-    let tail (l: 'a List): 'a List = failwith "TODO"
+    let tail (l: 'A List): 'A List = failwith "TODO"
 
-    let setHead (l: 'a List) (h: 'a): 'a List = failwith "TODO"
+    let setHead (l: 'A List) (h: 'A): 'A List = failwith "TODO"
 
-    let drop (l: 'a List) (n: int): 'a List = failwith "TODO"
+    let drop (l: 'A List) (n: int): 'A List = failwith "TODO"
 
-    let dropWhile (l: 'a List) (f: 'a -> bool): 'a List = failwith "TODO"
+    let dropWhile (l: 'A List) (f: 'A -> bool): 'A List = failwith "TODO"
 
-    let init (l: 'a List): 'a List = failwith "TODO"
+    let init (l: 'A List): 'A List = failwith "TODO"
 
-    let length (l: 'a List): int = failwith "TODO"
+    let length (l: 'A List): int = failwith "TODO"
 
-    let foldLeft (l: 'a List) (z: 'b) (f: 'b -> 'a -> 'b): 'b = failwith "TODO"
+    let foldLeft (l: 'A List) (z: 'B) (f: 'B -> 'A -> 'B): 'B = failwith "TODO"
 
-    let map (l: 'a List) (f: 'a -> 'b): 'b List = failwith "TODO"
+    let map (l: 'A List) (f: 'A -> 'B): 'B List = failwith "TODO"

@@ -17,7 +17,7 @@ module List2 = // `List` companion module. Contains functions for creating and w
     // for any variables you don't intend to use on the right hand
     // side of a pattern. This makes it clear the value isn't
     // relevant.
-    let tail (l: 'a List): 'a List =
+    let tail (l: 'A List): 'A List =
         match l with
         | Nil -> failwith "tail of empty list"
         | Cons (_, t) -> t
@@ -25,7 +25,7 @@ module List2 = // `List` companion module. Contains functions for creating and w
     // If a function body consists solely of a match expression, we'll
     // often put the match on the same line as the function signature,
     // rather than introducing another level of nesting.
-    let setHead (l: 'a List) (h: 'a): 'a List =
+    let setHead (l: 'A List) (h: 'A): 'A List =
         match l with
         | Nil -> failwith "setHead on empty list"
         | Cons (_, t) -> Cons (h, t)
@@ -40,7 +40,7 @@ module List2 = // `List` companion module. Contains functions for creating and w
     // computed from something else. If `drop` threw an exception,
     // we'd have to first compute or check the length and only drop up
     // to that many elements.
-    let rec drop (l: 'a List) (n: int): 'a List =
+    let rec drop (l: 'A List) (n: int): 'A List =
         if (n <= 0) then l
         else match l with
              | Nil -> Nil
@@ -51,7 +51,7 @@ module List2 = // `List` companion module. Contains functions for creating and w
     // our predicate, `f`. The syntax is to add `when <cond>` after the
     // pattern, before the `->`, where `<cond>` can use any of the
     // variables introduced by the pattern.
-    let rec dropWhile (l: 'a List) (f: 'a -> bool): 'a List =
+    let rec dropWhile (l: 'A List) (f: 'A -> bool): 'A List =
         match l with
         | Cons (h, t) when f h -> dropWhile t f
         | _ -> l
@@ -70,15 +70,15 @@ module List2 = // `List` companion module. Contains functions for creating and w
     // reverse order, then reverse it at the end, which doesn't
     // require even local mutation. We'll write a reverse function
     // later in this chapter.
-    let rec init (l: 'a List): 'a List =
+    let rec init (l: 'A List): 'A List =
         match l with
         | Nil -> failwith "init of empty list"
         | Cons (_, Nil) -> Nil
         | Cons (h, t) -> Cons (h, init t)
 
-    let init2 (l: 'a List): 'a List =
-        let buf = new System.Collections.Generic.List<'a>()
-        let rec go (cur: 'a List): 'a List = 
+    let init2 (l: 'A List): 'A List =
+        let buf = new System.Collections.Generic.List<'A>()
+        let rec go (cur: 'A List): 'A List = 
             match cur with
             | Nil -> failwith "init of empty list"
             | Cons (_, Nil) -> List.apply(buf.ToArray())
@@ -86,10 +86,10 @@ module List2 = // `List` companion module. Contains functions for creating and w
                              go(t)
         go l
 
-    let length (l: 'a List): int =
+    let length (l: 'A List): int =
         List.foldRight l 0 (fun _ acc -> acc + 1)
 
-    let rec foldLeft (l: 'a List) (z: 'b) (f: 'b -> 'a -> 'b): 'b =
+    let rec foldLeft (l: 'A List) (z: 'B) (f: 'B -> 'A -> 'B): 'B =
         match l with
         | Nil -> z
         | Cons (h, t) -> foldLeft t (f z h) f
@@ -97,9 +97,9 @@ module List2 = // `List` companion module. Contains functions for creating and w
     let sum3 (l: int List) = foldLeft l 0 (fun x y -> x + y)
     let product3 (l: double List) = foldLeft l 1.0 (fun x y -> x * y)
 
-    let length2 (l: 'a List): int = foldLeft l 0 (fun acc h -> acc + 1)
+    let length2 (l: 'A List): int = foldLeft l 0 (fun acc h -> acc + 1)
 
-    let reverse (l: 'a List): 'a List = foldLeft l Nil (fun acc h -> Cons(h,acc))
+    let reverse (l: 'A List): 'A List = foldLeft l Nil (fun acc h -> Cons(h,acc))
 
     // The implementation of `foldRight` in terms of `reverse` and
     // `foldLeft` is a common trick for avoiding stack overflows when
@@ -109,27 +109,27 @@ module List2 = // `List` companion module. Contains functions for creating and w
     //
     // The other implementations build up a chain of functions which,
     // when called, results in the operations being performed with the
-    // correct associativity. We are calling `foldRight` with the `'b`
-    // type being instantiated to `'b -> 'b`, then calling the built
+    // correct associativity. We are calling `foldRight` with the `'B`
+    // type being instantiated to `'B -> 'B`, then calling the built
     // up function with the `z` argument. Try expanding the
     // definitions by substituting equals for equals using a simple
     // example, like `foldLeft (List.apply(1,2,3)) 0 (fun x y -> x +
     // y)` if this isn't clear. Note these implementations are more of
     // theoretical interest - they aren't stack-safe and won't work
     // for large lists.
-    let foldRightViaFoldLeft (l: 'a List) (z: 'b) (f: 'a -> 'b -> 'b): 'b =
+    let foldRightViaFoldLeft (l: 'A List) (z: 'B) (f: 'A -> 'B -> 'B): 'B =
       foldLeft (reverse l) z (fun b a -> f a b)
 
-    let foldRightViaFoldLeft_1 (l: 'a List) (z: 'b) (f: 'a -> 'b -> 'b): 'b =
+    let foldRightViaFoldLeft_1 (l: 'A List) (z: 'B) (f: 'A -> 'B -> 'B): 'B =
       foldLeft l (fun b -> b) (fun g a b -> g (f a b)) z
 
-    let foldLeftViaFoldRight (l: 'a List) (z: 'b) (f: 'b -> 'a -> 'b): 'b =
+    let foldLeftViaFoldRight (l: 'A List) (z: 'B) (f: 'B -> 'A -> 'B): 'B =
       List.foldRight l (fun b -> b) (fun a g b -> g (f b a)) z
 
   (*
   `append` simply replaces the `Nil` constructor of the first list with the second list, which is exactly the operation performed by `foldRight`.
   *)
-    let appendViaFoldRight (l: 'a List) (r: 'a List): 'a List =
+    let appendViaFoldRight (l: 'A List) (r: 'A List): 'A List =
       List.foldRight l r (fun h t -> Cons(h, t))
 
    (*
@@ -137,7 +137,7 @@ module List2 = // `List` companion module. Contains functions for creating and w
 
   Note that we're simply referencing the `append` function, without writing something like `fun x y -> append x y`. In other languages there is a rather arbitrary distinction between functions defined as _methods_ and function values, which are the first-class objects we can pass to other functions, put in collections, and so on.
   *)
-    let concat (l: 'a List List): 'a List =
+    let concat (l: 'A List List): 'A List =
       List.foldRight l Nil List.append
 
     let add1 (l: int List): int List =
@@ -146,4 +146,4 @@ module List2 = // `List` companion module. Contains functions for creating and w
     let doubleToString(l: double List): String List =
       List.foldRight l Nil (fun h t -> Cons(h.ToString(),t))
 
-    let map (l: 'a List) (f: 'a -> 'b): 'b List = failwith "TODO"
+    let map (l: 'A List) (f: 'A -> 'B): 'B List = failwith "TODO"

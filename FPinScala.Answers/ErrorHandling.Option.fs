@@ -2,23 +2,23 @@
 
 open System
 
-type 'a Option =
+type 'A Option =
     | None
-    | Some of 'a
+    | Some of 'A
 
-    member this.map (f: 'a -> 'b): 'b Option =
+    member this.map (f: 'A -> 'B): 'B Option =
         failwith "todo"
 
-    member this.getOrElse (deflt: 'a): 'a =
+    member this.getOrElse (deflt: 'A): 'A =
         failwith "todo"
 
-    member this.flatMap (f: 'a -> 'b Option): 'b Option =
+    member this.flatMap (f: 'A -> 'B Option): 'B Option =
         failwith "todo"
 
-    member this.orElse (ob: 'a Option): 'a Option =
+    member this.orElse (ob: 'A Option): 'A Option =
         failwith "todo"
 
-    member this.filter (f: 'a -> bool): 'a Option =
+    member this.filter (f: 'A -> bool): 'A Option =
         failwith "todo"
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
@@ -46,11 +46,11 @@ module Option =
     let variance (xs: double list): double Option =
         failwith "todo"
 
-    let map2 (a: 'a Option) (b: 'b Option) (f: 'a -> 'b -> 'c): 'c Option =
+    let map2 (a: 'A Option) (b: 'B Option) (f: 'A -> 'B -> 'C): 'C Option =
         failwith "todo"
 
-    let sequence (a: 'a Option list): 'a list Option =
+    let sequence (a: 'A Option list): 'A list Option =
         failwith "todo"
 
-    let traverse (a: 'a list) (f: 'a -> 'b Option): 'b list Option =
+    let traverse (a: 'A list) (f: 'A -> 'B Option): 'B list Option =
         failwith "todo"
