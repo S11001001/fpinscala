@@ -23,7 +23,7 @@ type Location =
 
     member this.currentLine: String =
         if (this.Input.Length > 1)
-        then this.Input.Split('\n') |> Seq.nth (this.line - 1)
+        then this.Input.Split('\n') |> Seq.item (this.line - 1)
         else ""
 
 and ParseError = {Stack: (Location * String) list;
