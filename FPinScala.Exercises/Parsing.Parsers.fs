@@ -2,7 +2,7 @@
 
 open System
 
-type 'a Parser =
+type 'A Parser =
     | Parser of unit                 // TODO describe actual structure
 
 type Location =

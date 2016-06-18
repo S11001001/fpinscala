@@ -2,28 +2,28 @@
 
 open System
 
-type Either<'e, 'a> = 
-    | Left of 'e
-    | Right of 'a
+type Either<'E, 'A> = 
+    | Left of 'E
+    | Right of 'A
 
-    member this.map (f: 'a -> 'b): Either<'e, 'b> =
+    member this.map (f: 'A -> 'B): Either<'E, 'B> =
         failwith "TODO"
 
-    member this.flatMap (f: 'a -> Either<'e, 'b>): Either<'e, 'b> =
+    member this.flatMap (f: 'A -> Either<'E, 'B>): Either<'E, 'B> =
         failwith "TODO"
 
-    member this.orElse (b: Either<'e, 'a>): Either<'e, 'a> =
+    member this.orElse (b: Either<'E, 'A>): Either<'E, 'A> =
         failwith "TODO"
 
-    member this.map2 (b: Either<'e, 'b>) (f: ('a * 'b) -> 'c): Either<'e, 'c> =
+    member this.map2 (b: Either<'E, 'B>) (f: ('A * 'B) -> 'c): Either<'E, 'c> =
         failwith "TODO"
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Either =
-    let traverse (es: 'a list) (f: 'a -> Either<'e, 'b>): Either<'e, 'a list> =
+    let traverse (es: 'A list) (f: 'A -> Either<'E, 'B>): Either<'E, 'A list> =
         failwith "TODO"
 
-    let sequence (es: Either<'e, 'a> list): Either<'e, 'a list> =
+    let sequence (es: Either<'E, 'A> list): Either<'E, 'A list> =
         failwith "TODO"
 
     let mean (xs: double list): Either<String, double> =
@@ -37,7 +37,7 @@ module Either =
         with
         | e -> Left e
 
-    let Try (a: unit -> 'a): Either<Exception, 'a> =
+    let Try (a: unit -> 'A): Either<Exception, 'A> =
         try
             Right (a ())
         with
