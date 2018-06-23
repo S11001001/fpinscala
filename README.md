@@ -110,7 +110,7 @@ Additionally, I believe F# to be a better medium in certain ways for
 learning FP than Scala.  Its syntax owes exceptional beauty to its
 OCaml derivation.  Inference is better for most purposes, and its
 standard library is focused on easily composable functions rather than
-methods.  F# has syntax for FP concepts that must be simulated in F#,
+methods.  F# has syntax for FP concepts that must be simulated in Scala,
 like ADTs ("discriminated unions").  Subtyping, a major source of type
 system confusion, is greatly deemphasized.
 
